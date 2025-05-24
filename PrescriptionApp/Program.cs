@@ -1,6 +1,7 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using PrescriptionApp.DAL;
+using PrescriptionApp.Services;
 
 namespace PrescriptionApp;
 
@@ -18,6 +19,7 @@ public class Program
             opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));       } );
 
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+        builder.Services.AddScoped<IPrescriptionService, PrescriptionService>();
         builder.Services.AddOpenApi();
 
         var app = builder.Build();

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PrescriptionApp.DAL;
 
@@ -11,9 +12,11 @@ using PrescriptionApp.DAL;
 namespace PrescriptionApp.Migrations
 {
     [DbContext(typeof(PrescriptionDbContext))]
-    partial class PrescriptionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250524150058_SeedMoreData")]
+    partial class SeedMoreData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

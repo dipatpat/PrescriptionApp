@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PrescriptionApp.DAL;
 
@@ -11,9 +12,11 @@ using PrescriptionApp.DAL;
 namespace PrescriptionApp.Migrations
 {
     [DbContext(typeof(PrescriptionDbContext))]
-    partial class PrescriptionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250524144623_AddExplicitForeignKeys")]
+    partial class AddExplicitForeignKeys
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,22 +51,6 @@ namespace PrescriptionApp.Migrations
                     b.HasKey("IdDoctor");
 
                     b.ToTable("Doctors");
-
-                    b.HasData(
-                        new
-                        {
-                            IdDoctor = 1,
-                            Email = "alice.smith@hospital.com",
-                            FirstName = "Alice",
-                            LastName = "Smith"
-                        },
-                        new
-                        {
-                            IdDoctor = 2,
-                            Email = "bob.brown@hospital.com",
-                            FirstName = "Bob",
-                            LastName = "Brown"
-                        });
                 });
 
             modelBuilder.Entity("PrescriptionApp.Models.Medicament", b =>
@@ -92,29 +79,6 @@ namespace PrescriptionApp.Migrations
                     b.HasKey("IdMedicament");
 
                     b.ToTable("Medicaments");
-
-                    b.HasData(
-                        new
-                        {
-                            IdMedicament = 1,
-                            Description = "Pain reliever",
-                            Name = "Aspirin",
-                            Type = "Tablet"
-                        },
-                        new
-                        {
-                            IdMedicament = 2,
-                            Description = "Antibiotic",
-                            Name = "Penicillin",
-                            Type = "Injection"
-                        },
-                        new
-                        {
-                            IdMedicament = 3,
-                            Description = "Anti-inflammatory",
-                            Name = "Ibuprofen",
-                            Type = "Capsule"
-                        });
                 });
 
             modelBuilder.Entity("PrescriptionApp.Models.Patient", b =>
@@ -141,22 +105,6 @@ namespace PrescriptionApp.Migrations
                     b.HasKey("IdPatient");
 
                     b.ToTable("Patients");
-
-                    b.HasData(
-                        new
-                        {
-                            IdPatient = 1,
-                            Birthdate = new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FirstName = "John",
-                            LastName = "Doe"
-                        },
-                        new
-                        {
-                            IdPatient = 2,
-                            Birthdate = new DateTime(1985, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FirstName = "Jane",
-                            LastName = "Doe"
-                        });
                 });
 
             modelBuilder.Entity("PrescriptionApp.Models.Prescription", b =>
@@ -186,16 +134,6 @@ namespace PrescriptionApp.Migrations
                     b.HasIndex("IdPatient");
 
                     b.ToTable("Prescriptions");
-
-                    b.HasData(
-                        new
-                        {
-                            IdPrescription = 1,
-                            Date = new DateTime(2024, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DueDate = new DateTime(2024, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdDoctor = 1,
-                            IdPatient = 1
-                        });
                 });
 
             modelBuilder.Entity("PrescriptionApp.Models.PrescriptionMedicament", b =>
@@ -219,22 +157,6 @@ namespace PrescriptionApp.Migrations
                     b.HasIndex("IdMedicament");
 
                     b.ToTable("PrescriptionMedicaments");
-
-                    b.HasData(
-                        new
-                        {
-                            IdPrescription = 1,
-                            IdMedicament = 1,
-                            Details = "Take after meal",
-                            Dose = 2
-                        },
-                        new
-                        {
-                            IdPrescription = 1,
-                            IdMedicament = 2,
-                            Details = "Once daily",
-                            Dose = 1
-                        });
                 });
 
             modelBuilder.Entity("PrescriptionApp.Models.Prescription", b =>
